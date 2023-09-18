@@ -922,6 +922,8 @@ def instagram_follow():
     except:
         print('add_list')
     driver.get("https://www.like4like.org/user/earn-instagram-follow.php")
+    con_follows = random.randrange(1,5)
+    con_follows_stop = 1
     for s in range(10):
         try:
 
@@ -940,13 +942,14 @@ def instagram_follow():
                 driver.switch_to.window(driver.window_handles[1])
                 
                 time.sleep(2)
-                
                 login_instgram_true_2 = driver.current_url.split('accounts/')[-1].split('/?')[0]
                 instagram_follow_erro()
                 if login_instgram_true_2=='suspended':
                     print('suspended')
                     driver.close()
                     driver.switch_to.window(driver.window_handles[0])
+                    driver.close()
+                    input('suspended_suspended')
                     break
                 try:
                     driver.find_element(By.XPATH, "//*[text()='Follow']").click()
@@ -955,8 +958,10 @@ def instagram_follow():
                     driver.switch_to.window(driver.window_handles[0])
                     time.sleep(2)
                     driver.find_element(By.CSS_SELECTOR, '[alt="Click On The Button To Confirm Interaction!"]').click()
-                    time.sleep(random.randrange(5,20))
-                    break
+                    
+                    if con_follows == con_follows_stop:
+                        time.sleep(random.randrange(50,200))
+                        break
                     #time.sleep(random.randrange(80, 200))
                 except:
                     
